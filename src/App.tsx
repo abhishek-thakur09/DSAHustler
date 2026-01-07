@@ -8,7 +8,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useSetRecoilState } from 'recoil';
 import { userAtom } from './coponents/store/atoms/User';
 import { Topbar } from './coponents/Topbar';
-
+import { LoginPage } from './coponents/Login';
 
 
 const firebaseConfig = {
@@ -53,7 +53,8 @@ useEffect(()=>{
   return (
     <>
       <div>
-        <Topbar/>
+        {/* <Topbar/> */}
+        <LoginPage/>
       </div>
         
     </>
