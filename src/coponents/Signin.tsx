@@ -50,6 +50,8 @@ export const Signin = () => {
 }
 
   return <div>
+
+    
     <input type="text" placeholder="email" onChange={(e)=>{
         setEmail(e.target.value);
     }}>

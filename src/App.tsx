@@ -5,6 +5,9 @@ import { getAnalytics } from "firebase/analytics";
 import { Signin } from './coponents/Signin';
 import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useSetRecoilState } from 'recoil';
+import { userAtom } from './coponents/store/atoms/User';
+import { Topbar } from './coponents/Topbar';
 
 
 
@@ -24,11 +27,19 @@ export const auth = getAuth(app);
 
 
 
-function App() {
+function App() { 
+
+const setUser = useSetRecoilState(userAtom);
 
 useEffect(()=>{
   onAuthStateChanged(auth, function(user){
-    if(user){
+    if(user && user.email){
+      setUser({
+        isLoggedIn : true,
+        user:{
+          email: user.email
+        }
+      })
       console.log("This is the user ", user);
     }
     else{
@@ -42,7 +53,7 @@ useEffect(()=>{
   return (
     <>
       <div>
-        <Signin/>
+        <Topbar/>
       </div>
         
     </>
